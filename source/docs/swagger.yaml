@@ -1,0 +1,178 @@
+definitions:
+  model.Form:
+    properties:
+      deadline:
+        type: string
+      division:
+        type: string
+      inputList:
+        items:
+          $ref: '#/definitions/model.InputList'
+        type: array
+      link:
+        type: string
+      note:
+        type: string
+      request_domain:
+        type: string
+      requester_name:
+        type: string
+      tag:
+        items:
+          type: string
+        type: array
+    type: object
+  model.InputList:
+    properties:
+      input:
+        items:
+          type: string
+        type: array
+      output:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/crawler/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Update request form by ID
+      operationId: update-user-request-form-by-id-crawler
+      parameters:
+      - description: Form ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated User Request Form Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Form'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Update request form by ID
+      tags:
+      - Crawler API Request
+  /api/user/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user request form by ID
+      operationId: delete-user-request-form-by-id
+      parameters:
+      - description: Form ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Delete user request form by ID
+      tags:
+      - User API Request
+  /api/user/input:
+    post:
+      consumes:
+      - application/json
+      description: Create new user request form
+      operationId: create-new-user-request-form
+      parameters:
+      - description: User Request Form Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Form'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Create new user request form
+      tags:
+      - User API Request
+  /api/user/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Update user request form by ID
+      operationId: update-user-request-form-by-id
+      parameters:
+      - description: Form ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated User Request Form Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Form'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Update user request form by ID
+      tags:
+      - User API Request
+  /api/view_all:
+    get:
+      consumes:
+      - application/json
+      description: Get all user request forms
+      operationId: get-all-user-request-forms
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Form'
+            type: array
+      summary: Get all user request forms
+      tags:
+      - API Request
+  /api/view_detail/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get user request form by ID
+      operationId: get-user-request-form-by-id
+      parameters:
+      - description: Form ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Form'
+      summary: Get user request form by ID
+      tags:
+      - API Request
+swagger: "2.0"
